@@ -1,0 +1,6 @@
+
+Tento text pise Python bez interpunkcie.
+Nasiel som ta !
+Nasiel som ta !
+Nasiel som ta !
+Nasiel som ta !
