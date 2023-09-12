@@ -1,8 +1,4 @@
-
-___
-
 ## 100 days of code
-___
 
 This is a repository tracking my progress of [100 Days of Code: The Complete Python Pro Bootcamp for 2023](https://www.udemy.com/course/100-days-of-code/) Udemy course. This course is designed to to master Python by building 100 projects in 100 days, including data science, automation, build websites, games and apps.
 
