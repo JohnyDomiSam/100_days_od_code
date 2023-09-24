@@ -14,6 +14,17 @@ REPS = 0
 TIMER = None
 
 
+# ---------------------------- FOCUS WINDOW FUNCTION ------------------------------- #
+def focus_window(option):
+    if option == "on":
+        window.deiconify()
+        window.focus_force()
+        window.attributes('-topmost', 1)
+        window.bell()
+    elif option == "off":
+        window.attributes('-topmost', 0)
+
+
 # ---------------------------- TIMER RESET ------------------------------- #
 def reset_timer():
     global REPS
@@ -22,6 +33,7 @@ def reset_timer():
     timer_label.config(text="Timer", fg=RED)
     canvas.itemconfig(timer_text, text="00:00")
     checkmark_label.config(text="")
+    start_button.config(state="normal")
 
 
 # ---------------------------- TIMER MECHANISM ------------------------------- #
@@ -31,15 +43,19 @@ def start_timer():
     work_sec = WORK_MIN * 60
     short_break_seconds = SHORT_BREAK_MIN * 60
     long_break_seconds = LONG_BREAK_MIN * 60
+    start_button.config(state="disabled")
     if REPS % 8 == 0:
         timer_label.config(text="Break", fg=RED)
         count_down(long_break_seconds)
+        focus_window("on")
     elif REPS % 2 != 0:
         timer_label.config(text="Work", fg=GREEN)
         count_down(work_sec)
+        focus_window("off")
     elif REPS % 2 == 0:
         timer_label.config(text="Break", fg=PINK)
         count_down(short_break_seconds)
+        focus_window("on")
 
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- #
@@ -66,7 +82,7 @@ window.config(padx=100, pady=50, bg=YELLOW)
 
 # Canvas
 canvas = Canvas(width=200, height=224, bg=YELLOW, highlightthickness=0)
-tomato_img = PhotoImage(file="28.Pomodoro_app/tomato.png")
+tomato_img = PhotoImage(file="tomato.png")
 canvas.create_image(100, 112, image=tomato_img)
 timer_text = canvas.create_text(
     100, 130, text="00:00", fill="white", font=(FONT_NAME, 35, "bold")
