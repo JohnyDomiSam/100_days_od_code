@@ -68,7 +68,7 @@ def count_down(count):
     canvas.itemconfig(timer_text, text=f"{min}:{sec}")
     if count > 0:
         global TIMER
-        TIMER = window.after(1000, count_down, count - 1)
+        TIMER = window.after(10, count_down, count - 1)
     else:
         start_timer()
         if REPS % 2 == 0:
