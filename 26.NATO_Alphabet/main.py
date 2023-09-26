@@ -1,12 +1,14 @@
 import pandas
 
-# TODO 1. Create a dictionary in this format:
-{"A": "Alfa", "B": "Bravo"}
-
-# TODO 2. Create a list of the phonetic code words from a word that the user inputs.
-npa_csv = pandas.read_csv("nato_phonetic_alphabet.csv")
+npa_csv = pandas.read_csv("26.NATO_Alphabet/nato_phonetic_alphabet.csv")
 new_dict = {row.letter: row.code for (index, row) in npa_csv.iterrows()}
-
-name = input("Write your name here: ").upper()
-new_list = [new_dict[letter] for letter in name]
-print(new_list)
+correct_guess = False
+while not correct_guess:
+    try:
+        name = input("Write your name here: ").upper()
+        new_list = [new_dict[letter] for letter in name]
+    except KeyError:
+        print("Sory, only letters in alphabet plesase")
+    else:
+        correct_guess = True
+        print(new_list)
