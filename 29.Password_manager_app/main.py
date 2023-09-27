@@ -14,7 +14,7 @@ def find_password():
             if website in data:
                 messagebox.showinfo(
                     title="Info",
-                    message=f'You already have password for {website}: {data[website]["password"]}',
+                    message=f'You already have password for\n{website}\nPassword: {data[website]["password"]}',
                 )
             else:
                 messagebox.showinfo(
@@ -95,8 +95,6 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save():
-    """Pridá entry z polí Website, Email/Username, Password
-    a uloží ich do textového súboru."""
     get_website = entry_website.get()
     get_email = email_entry.get()
     get_password = entry_password.get()
