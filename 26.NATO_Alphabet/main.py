@@ -1,6 +1,6 @@
 import pandas
 
-npa_csv = pandas.read_csv("26.NATO_Alphabet/nato_phonetic_alphabet.csv")
+npa_csv = pandas.read_csv("nato_phonetic_alphabet.csv")
 new_dict = {row.letter: row.code for (index, row) in npa_csv.iterrows()}
 correct_guess = False
 while not correct_guess:

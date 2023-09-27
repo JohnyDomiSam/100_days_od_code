@@ -8,7 +8,7 @@ import json
 # ---------------------------- SEARCH ENGINE ------------------------------- #
 def find_password():
     try:
-        with open("29.Password_manager_app/data.json", "r") as data_file:
+        with open("data.json", "r") as data_file:
             data = json.load(data_file)
             website = entry_website.get()
             if website in data:
@@ -108,16 +108,16 @@ def save():
         )
     else:
         try:
-            with open("29.Password_manager_app/data.json", "r") as data_file:
+            with open("data.json", "r") as data_file:
                 data = json.load(data_file)
 
         except FileNotFoundError:
-            with open("29.Password_manager_app/data.json", "w") as data_file:
+            with open("data.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
 
         else:
             data.update(new_data)
-            with open("29.Password_manager_app/data.json", "w") as data_file:
+            with open("data.json", "w") as data_file:
                 json.dump(data, data_file, indent=4)
         entry_password.delete(0, END)
         entry_website.delete(0, END)
@@ -130,7 +130,7 @@ window.config(padx=20, pady=20)
 
 # Canvas
 canvas = Canvas(width=200, height=200, highlightthickness=0)
-logo_img = PhotoImage(file="29.Password_manager_app/logo.png")
+logo_img = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=logo_img)
 canvas.grid(column=1, row=0)
 
