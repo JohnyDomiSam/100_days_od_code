@@ -2,8 +2,8 @@ import datetime as dt
 from random import choice
 import smtplib
 
-my_email = "kubinec.jan.test@gmail.com"
-password = "mdiavnbjmaklxydx"
+my_email = "test.test@gmail.com"
+password = "my_password"
 
 # datetime object
 now = dt.datetime.now()
