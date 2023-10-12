@@ -29,7 +29,7 @@ def is_over_you():
         lat_off = round(MY_LAT - iss_latitude)
         long_off = round(MY_LONG - iss_longitude)
         print(f"ISS position is {iss_latitude}, {iss_longitude}.")
-        print(f"ISS if off from your location by {lat_off}, {long_off}")
+        print(f"ISS if of from your location by {lat_off}, {long_off}")
 
 
 def is_night():
