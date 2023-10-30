@@ -1,19 +1,15 @@
-import smtplib
+import requests
 
 
 class NotificationManager:
 
     def __init__(self, price, dep_city_name, dep_iata_code, arr_city_name, arr_airport_iata, o_date, i_date):
-        self.my_email = "kubinec.jan.test@gmail.com"
-        self.password = ""
-        self.message = f'Low price alert! Only {price} to fly from {dep_city_name}-{dep_iata_code} to {arr_city_name}-{arr_airport_iata}, from {o_date} to {i_date}'
+        self.message = f'Low price alert!\nOnly {price} to fly from {dep_city_name}-{dep_iata_code} to {arr_city_name}-{arr_airport_iata},\nfrom {o_date} to {i_date}'
+        self.chat_id = "1383520281"
+        self.URL = "https://api.telegram.org/bot6769511991:AAGTePHE8DMpUVITwrJVIwnbcQVVdN9lWRI/sendMessage"
+        self.parameters = {"chat_id": self.chat_id,
+                           "text": self.message}
 
-    def send_email(self):
-        with smtplib.SMTP("smtp.gmail.com", port=587) as connection:
-            connection.starttls()
-            connection.login(user=self.my_email, password=self.password)
-            connection.sendmail(
-                from_addr=self.my_email,
-                to_addrs="kubinec.jan.test@gmail.com",
-                msg=f"Subject:Hello\n\n{self.message}",
-            )
+    def send_telegram(self):
+        self.response = requests.post(url=self.URL, params=self.parameters)
+        self.response.raise_for_status()

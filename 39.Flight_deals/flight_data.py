@@ -1,6 +1,8 @@
 import requests
 from datetime import datetime, timedelta
 from pprint import pprint
+
+
 class FlightData:
 
     def __init__(self, departure):
@@ -31,6 +33,8 @@ class FlightData:
         self.list_of_its = self.data["data"]
         self.lowest_fair = self.get_lowest_price()
         self.lowest_price = self.lowest_fair["price"]
+        self.o_date = self.get_o_date()
+        self.i_date = self.get_i_date()
 
     def get_price(self):
         response = requests.get(url=self.url, headers=self.headers, params=self.parameters)
@@ -45,3 +49,15 @@ class FlightData:
         min_price = min(list_of_prices)
         list_index = list_of_prices.index(min_price)
         return self.list_of_its[list_index]
+
+    def get_o_date(self):
+        date_time_list = self.lowest_fair["local_departure"].split("T")
+        date = date_time_list[0]
+        time = date_time_list[1][:5]
+        return date, time
+
+    def get_i_date(self):
+        date_time_list = self.lowest_fair["local_arrival"].split("T")
+        date = date_time_list[0]
+        time = date_time_list[1][:5]
+        return date, time
