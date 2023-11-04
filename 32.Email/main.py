@@ -25,7 +25,7 @@ today_date = (now.day, now.month)
 rec_name = new_dict[today_date][0]
 rec_email = new_dict[today_date][1]
 
-# check bithday, change name and send email
+# check birthday, change name and send email
 if today_date in new_dict:
     random_letter = choice(letters)
 
