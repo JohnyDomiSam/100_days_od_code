@@ -8,7 +8,7 @@ sheet_data = data_manager.get_destination_data()
 flight_search = FlightSearch()
 
 
-ORIGIN_CITY_IATA = "LON"
+ORIGIN_CITY_IATA = "VIE"
 
 if sheet_data[0]["iataCode"] == "":
     for row in sheet_data:
@@ -26,8 +26,12 @@ for destination in sheet_data:
         from_time=tomorrow,
         to_time=six_month_from_today
     )
+    if flight is None:
+        continue
     if flight.price < destination["lowestPrice"]:
         message = f"Low price alert! Only £{flight.price} to fly from {flight.origin_city}-{flight.origin_airport} to {flight.destination_city}-{flight.destination_airport}, from {flight.out_date} to {flight.return_date}."
+        if flight.stop_overs > 0:
+            message += f"\nFlight has {flight.stop_overs} stop over, via {flight.via_city}."
         nm = NotificationManager(message=message)
         data_manager.update_price(price=flight.price, city=flight.destination_city)
         nm.send_telegram()
